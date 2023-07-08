@@ -63,6 +63,9 @@ public class LabOX {
 
                 board[row - 1][col - 1] = turn.toUpperCase();
 
+                checkWin();
+                nextTurn();
+
             } else {
 
                 while ((!(row > 0 && row < 4) && !(col > 0 && col < 4)) && !(board[row - 1][col - 1].equals("_"))) {
