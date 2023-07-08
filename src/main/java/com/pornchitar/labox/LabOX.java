@@ -144,6 +144,15 @@ public class LabOX {
 
     }
 
+    public void reset() {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+                board[i][j] = "_";
+            }
+        }
+        turn = "O";
+    }
+
     public static void main(String[] args) {
         LabOX project = new  LabOX();
         Scanner kb = new Scanner(System.in);
