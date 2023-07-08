@@ -123,6 +123,15 @@ public class LabOX {
         return false;
     }
 
+    public boolean checkColumns() {
+        for (int j = 0; j < board[0].length; j++) {
+            if (board[0][j].toLowerCase().equals(turn) && board[1][j].toLowerCase().equals(turn) && board[2][j].toLowerCase().equals(turn)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         LabOX project = new  LabOX();
         Scanner kb = new Scanner(System.in);
