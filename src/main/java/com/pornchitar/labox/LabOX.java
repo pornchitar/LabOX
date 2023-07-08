@@ -102,29 +102,26 @@ public class LabOX {
         return true;
     }
 
-    public void checkWin() {
-        if (checkRows() || checkColumns() || checkDiagonals()) {
-
-            System.out.println("!!! " + turn + " Wins !!!");
-            if (endGame()) {
-                reset();
-            } else {
-                play = false;
-
-            }
-        } if(play == true) {
-            if (checkDraw()) {
-                System.out.println("!!! Draw !!!");
-                if (endGame()) {
-                    reset();
-                } else {
-                    play = false;
-
-                }
+    public boolean checkRows() {
+        for (int j = 0; j < board[row - 1].length; j++) {
+            if (!board[row - 1][j].toLowerCase().equals(turn)) {
+                return false;
             }
         }
+        return true;
     }
 
+    public boolean checkDiagonals() {
+        if (board[0][0].toLowerCase().equals(turn) && board[1][1].toLowerCase().equals(turn) && board[2][2].toLowerCase().equals(turn)) {
+            return true;
+        }
+
+        if (board[0][2].toLowerCase().equals(turn) && board[1][1].toLowerCase().equals(turn) && board[2][0].toLowerCase().equals(turn)) {
+            return true;
+        }
+
+        return false;
+    }
 
     public static void main(String[] args) {
         LabOX project = new  LabOX();
