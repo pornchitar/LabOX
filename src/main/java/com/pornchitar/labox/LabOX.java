@@ -92,7 +92,7 @@ public class LabOX {
 
     public void checkWin() {
         if (checkRows() || checkColumns() || checkDiagonals()) {
-
+            show();
             System.out.println("!!! " + turn + " Win !!!");
             if (endGame()) {
                 reset();
