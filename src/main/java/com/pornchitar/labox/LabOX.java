@@ -82,7 +82,26 @@ public class LabOX {
             return;
         }
     }
-    
+    public void nextTurn() {
+        if (turn.equals("X")) {
+            turn = "O";
+        } else {
+            turn = "X";
+        }
+
+    }
+
+    public boolean checkDraw() {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+                if (board[i][j].equals("_")) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         LabOX project = new  LabOX();
         Scanner kb = new Scanner(System.in);
