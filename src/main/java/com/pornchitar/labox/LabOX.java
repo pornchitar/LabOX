@@ -51,6 +51,37 @@ public class LabOX {
         return true;
 
     }
+
+    public void inputRowAndColumn() {
+        System.out.print("Input row : ");
+        row = kb.nextInt();
+        System.out.print("Input column : ");
+        col = kb.nextInt();
+        if (((row > 0 && row < 4) && (col > 0 && col < 4))) {
+
+            if (board[row - 1][col - 1].equals("_")) {
+
+                board[row - 1][col - 1] = turn.toUpperCase();
+
+            } else {
+
+                while ((!(row > 0 && row < 4) && !(col > 0 && col < 4)) && !(board[row - 1][col - 1].equals("_"))) {
+
+                    System.out.println("Please Input Again.");
+                    System.out.print("Input row :");
+                    row = kb.nextInt();
+                    System.out.print("Input column :");
+                    col = kb.nextInt();
+
+                }
+
+                return;
+            }
+
+        } else {
+            return;
+        }
+    }
     
     public static void main(String[] args) {
         LabOX project = new  LabOX();
