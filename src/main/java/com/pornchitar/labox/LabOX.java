@@ -12,21 +12,21 @@ import java.util.Scanner;
  */
 public class LabOX {
 
-    Scanner kb = new Scanner(System.in);
-    public int row;
+   public int row;
     public int col;
-    public String[][] board = {{"_", "_", "_"}, {"_", "_", "_"}, {"_", "_", "_"}};
+    Scanner kb = new Scanner(System.in);
     public boolean play = false;
-    public String turn;
     public String start;
     public boolean end;
-    
+    public String turn;
+    public String[][] board = {{"_", "_", "_"}, {"_", "_", "_"}, {"_", "_", "_"}};
+
     public void startGame() {
         System.out.println("OX GAME");
         System.out.print("Start Game??? (y/n): ");
         start = kb.nextLine().toLowerCase();
         while (!start.equals("n") && !start.equals("y")) {
-            System.out.print("Start Game (y/n): ");
+            System.out.print("Start Game??? (y/n): ");
             start = kb.nextLine().toLowerCase();
         }
         if (start.equals("n")) {
@@ -34,21 +34,6 @@ public class LabOX {
         } else {
             play = true;
         }
-
-    }
-    
-    public boolean endGame() {
-        String continues = kb.nextLine().toLowerCase();
-
-        while (!continues.equals("n") && !continues.equals("y")) {
-
-            System.out.print("Exit !!!??? (y/n): ");
-            continues = kb.nextLine().toLowerCase();
-        }
-        if (continues.equals("y")) {
-            return false;
-        }
-        return true;
 
     }
 
@@ -62,7 +47,6 @@ public class LabOX {
             if (board[row - 1][col - 1].equals("_")) {
 
                 board[row - 1][col - 1] = turn.toUpperCase();
-
                 checkWin();
                 nextTurn();
 
@@ -85,6 +69,7 @@ public class LabOX {
             return;
         }
     }
+
     public void nextTurn() {
         if (turn.equals("X")) {
             turn = "O";
@@ -105,9 +90,32 @@ public class LabOX {
         return true;
     }
 
+    public void checkWin() {
+        if (checkRows() || checkColumns() || checkDiagonals()) {
+
+            System.out.println("!!! " + turn + " Win !!!");
+            if (endGame()) {
+                reset();
+            } else {
+                play = false;
+
+            }
+        } if(play == true) {
+            if (checkDraw()) {
+                System.out.println("!!! Draw !!!");
+                if (endGame()) {
+                    reset();
+                } else {
+                    play = false;
+
+                }
+            }
+        }
+    }
+
     public boolean checkRows() {
         for (int j = 0; j < board[row - 1].length; j++) {
-            if (!board[row - 1][j].toLowerCase().equals(turn)) {
+            if (!board[row - 1][j].equals(turn.toUpperCase())) {
                 return false;
             }
         }
@@ -115,11 +123,11 @@ public class LabOX {
     }
 
     public boolean checkDiagonals() {
-        if (board[0][0].toLowerCase().equals(turn) && board[1][1].toLowerCase().equals(turn) && board[2][2].toLowerCase().equals(turn)) {
+        if (board[0][0].equals(turn.toUpperCase()) && board[1][1].equals(turn.toUpperCase()) && board[2][2].equals(turn.toUpperCase())) {
             return true;
         }
 
-        if (board[0][2].toLowerCase().equals(turn) && board[1][1].toLowerCase().equals(turn) && board[2][0].toLowerCase().equals(turn)) {
+        if (board[0][2].equals(turn.toUpperCase()) && board[1][1].equals(turn.toUpperCase()) && board[2][0].equals(turn.toUpperCase())) {
             return true;
         }
 
@@ -128,7 +136,7 @@ public class LabOX {
 
     public boolean checkColumns() {
         for (int j = 0; j < board[0].length; j++) {
-            if (board[0][j].toLowerCase().equals(turn) && board[1][j].toLowerCase().equals(turn) && board[2][j].toLowerCase().equals(turn)) {
+            if (board[0][j].equals(turn.toUpperCase()) && board[1][j].equals(turn.toUpperCase()) && board[2][j].equals(turn.toUpperCase())) {
                 return true;
             }
         }
@@ -144,6 +152,22 @@ public class LabOX {
             System.out.println();
 
         }
+
+    }
+
+    public boolean endGame() {
+        String continues = kb.nextLine().toLowerCase();
+
+        while (!continues.equals("n") && !continues.equals("y")) {
+
+            System.out.print("Exit !!!??? (y/n): ");
+            continues = kb.nextLine().toLowerCase();
+        }
+        if (continues.equals("y")) {
+            System.out.println("GoodBye...");
+            return false;
+        }
+        return true;
 
     }
 
@@ -169,31 +193,9 @@ public class LabOX {
 
     }
 
-    public void checkWin() {
-        if (checkRows() || checkColumns() || checkDiagonals()) {
-
-            System.out.println("!!! " + turn + " Wins !!!");
-            if (endGame()) {
-                reset();
-            } else {
-                play = false;
-
-            }
-        } if(play == true) {
-            if (checkDraw()) {
-                System.out.println("!!! Draw !!!");
-                if (endGame()) {
-                    reset();
-                } else {
-                    play = false;
-
-                }
-            }
-        }
-    }
-
     public static void main(String[] args) {
-        LabOX project = new  LabOX();
+
+         LabOX project = new  LabOX();
         Scanner kb = new Scanner(System.in);
         project.startGame();
         if (project.play == false) {
