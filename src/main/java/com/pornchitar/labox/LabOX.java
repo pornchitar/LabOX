@@ -152,6 +152,12 @@ public class LabOX {
         }
         turn = "O";
     }
+    
+    public void showTurn() {
+        System.out.println("_________________________");
+        System.out.println(">>> " + turn.toUpperCase() + " Turn !!!");
+
+    }
 
     public static void main(String[] args) {
         LabOX project = new  LabOX();
