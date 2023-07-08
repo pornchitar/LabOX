@@ -193,5 +193,14 @@ public class LabOX {
         LabOX project = new  LabOX();
         Scanner kb = new Scanner(System.in);
         project.startGame();
+        if (project.play == false) {
+            System.out.println("GoodBye...");
+            return;
+        }
+
+        project.turn = "X";
+        while (project.play) {
+            project.playGame();
+        }
     }
 }
