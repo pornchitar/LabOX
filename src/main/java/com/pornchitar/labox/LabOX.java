@@ -37,10 +37,24 @@ public class LabOX {
 
     }
     
+    public boolean endGame() {
+        String continues = kb.nextLine().toLowerCase();
+
+        while (!continues.equals("n") && !continues.equals("y")) {
+
+            System.out.print("Exit !!!??? (y/n): ");
+            continues = kb.nextLine().toLowerCase();
+        }
+        if (continues.equals("y")) {
+            return false;
+        }
+        return true;
+
+    }
     
     public static void main(String[] args) {
-
-         LabOX project = new  LabOX();
-       
+        LabOX project = new  LabOX();
+        Scanner kb = new Scanner(System.in);
+        project.startGame();
     }
 }
