@@ -102,6 +102,30 @@ public class LabOX {
         return true;
     }
 
+    public void checkWin() {
+        if (checkRows() || checkColumns() || checkDiagonals()) {
+
+            System.out.println("!!! " + turn + " Wins !!!");
+            if (endGame()) {
+                reset();
+            } else {
+                play = false;
+
+            }
+        } if(play == true) {
+            if (checkDraw()) {
+                System.out.println("!!! Draw !!!");
+                if (endGame()) {
+                    reset();
+                } else {
+                    play = false;
+
+                }
+            }
+        }
+    }
+
+
     public static void main(String[] args) {
         LabOX project = new  LabOX();
         Scanner kb = new Scanner(System.in);
